@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Environment, ContactShadows } from '@react-three/drei'
+import { OrbitControls, ContactShadows } from '@react-three/drei'
 import ESP32Model from './models/ESP32Model'
 import HBridgeModel from './models/HBridgeModel'
 import IRRobotModel from './models/IRRobotModel'
@@ -24,10 +24,11 @@ export default function Scene({ selected }) {
         castShadow
         shadow-mapSize={[1024, 1024]}
       />
+      <directionalLight position={[-3, 2, -2]} intensity={0.5} />
+      <pointLight position={[0, 2, 0]} intensity={0.4} />
       <Suspense fallback={null}>
         <Model key={selected} />
         <ContactShadows position={[0, -1, 0]} opacity={0.5} scale={6} blur={2.5} far={2} />
-        <Environment preset="city" />
       </Suspense>
       <OrbitControls enablePan minDistance={1} maxDistance={6} />
     </Canvas>
