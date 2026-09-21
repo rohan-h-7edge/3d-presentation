@@ -4,8 +4,10 @@ import { useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 import { useNormalizedScene } from './useNormalizedScene'
 
+const MODEL_URL = `${import.meta.env.BASE_URL}models/ir-robot/ir-robot.glb`
+
 export default function IRRobotModel(props) {
-  const { scene, animations } = useGLTF('/models/ir-robot/ir-robot.glb')
+  const { scene, animations } = useGLTF(MODEL_URL)
   const model = useNormalizedScene(scene)
   const mixer = useMemo(() => new THREE.AnimationMixer(model), [model])
 
@@ -38,4 +40,4 @@ export default function IRRobotModel(props) {
   return <primitive object={model} {...props} />
 }
 
-useGLTF.preload('/models/ir-robot/ir-robot.glb')
+useGLTF.preload(MODEL_URL)

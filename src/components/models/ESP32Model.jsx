@@ -4,8 +4,10 @@ import { useGLTF } from '@react-three/drei'
 import { useNormalizedScene } from './useNormalizedScene'
 import { ESP32_MATERIAL_FIX } from './esp32MaterialFix'
 
+const MODEL_URL = `${import.meta.env.BASE_URL}models/esp32/esp32-wroom.glb`
+
 export default function ESP32Model(props) {
-  const { scene } = useGLTF('/models/esp32/esp32-wroom.glb')
+  const { scene } = useGLTF(MODEL_URL)
   const model = useNormalizedScene(scene)
 
   useEffect(() => {
@@ -28,4 +30,4 @@ export default function ESP32Model(props) {
   return <primitive object={model} {...props} />
 }
 
-useGLTF.preload('/models/esp32/esp32-wroom.glb')
+useGLTF.preload(MODEL_URL)
